@@ -46,5 +46,6 @@ char* palindrome(char* str) {
     answer[2] = '\0';
   }
 
+  free(rev);
   return answer;
 }
