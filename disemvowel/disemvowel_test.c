@@ -32,7 +32,7 @@ void test_long_string(void) {
   int size;
   int i;
 
-  size = 50000;
+  size = 40000;
   str = calloc(size, sizeof(char));
   str[0] = 'x';
   str[1] = 'y';
@@ -41,10 +41,11 @@ void test_long_string(void) {
     str[i] = 'a';
   }
   str[size-1] = '\0';
-  
-  assert_string_equal("xyz", disemvowel(str));
-
   free(str);
+  assert_string_equal("xyz", disemvowel(str));
+  
+ 
+
 }
 
 int main(int argc, char* argv[]) {
