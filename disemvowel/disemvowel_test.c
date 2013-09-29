@@ -6,25 +6,33 @@
 #include "disemvowel.h"
 
 void test_empty_str(void) {
-  assert_string_equal("", disemvowel(""));
+  char* dis = disemvowel("");
+  assert_string_equal("", dis);
+  free(dis);
 }
 
 void test_no_vowels(void) {
-  assert_string_equal("pqrst", disemvowel("pqrst"));
+  char* dis = disemvowel("pqrst");
+  assert_string_equal("pqrst", dis);
+  free(dis);
 }
 
 void test_only_vowels(void) {
-  assert_string_equal("", disemvowel("aeiouAEIOUOIEAuoiea"));
+  char* dis = disemvowel("aeiouAEIOUOIEAuoiea");
+  assert_string_equal("", dis);
+  free(dis);
 }
 
 void test_my_name(void) {
-  assert_string_equal("Nchls Frtg McPh", 
-		      disemvowel("Nicholas Freitag McPhee"));
+  char* dis = disemvowel("Nicholas Freitag McPhee");
+  assert_string_equal("Nchls Frtg McPh", dis);
+  free(dis);
 }
 
 void test_punctuation(void) {
-  assert_string_equal("n (nxplnd) lphnt!", 
-		      disemvowel("An (Unexplained) Elephant!"));
+  char* dis = disemvowel("An (Unexplained) Elephant!");
+  assert_string_equal("n (nxplnd) lphnt!", dis);
+  free(dis);
 }
 
 void test_long_string(void) {
@@ -32,7 +40,7 @@ void test_long_string(void) {
   int size;
   int i;
 
-  size = 40000;
+  size = 50000;
   str = calloc(size, sizeof(char));
   str[0] = 'x';
   str[1] = 'y';
@@ -41,11 +49,10 @@ void test_long_string(void) {
     str[i] = 'a';
   }
   str[size-1] = '\0';
+  char* dis = disemvowel(str);
+  assert_string_equal("xyz", dis);
   free(str);
-  assert_string_equal("xyz", disemvowel(str));
-  
- 
-
+  free(dis);
 }
 
 int main(int argc, char* argv[]) {
